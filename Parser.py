@@ -31,4 +31,4 @@ class Parser:
 
         if "@ FAM" in file_line:
             # print(self._individuals)
-            # print("hyyyy\n")
+            print("hyyyy\n")
