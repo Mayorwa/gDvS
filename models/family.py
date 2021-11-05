@@ -11,12 +11,15 @@ class Family:
     _events: [Events] = []
     _children: [str] = []
 
-    _event: Events = Events("unassigned", "", "")
+    _event: Events
 
     _file_line_no: int
 
     def __init__(self, file_line_no: int):
         self._file_line_no = file_line_no
+        self._events = []
+        self._children = []
+        self._event = Events("unassigned", "", "")
         self._createFamily()
 
     def _checkNextAttribute(self):

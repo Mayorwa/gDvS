@@ -7,7 +7,7 @@ from models.helper import getFileLineData, getIdFromLineData, getNameFromLineDat
 
 class Individual:
     _id: str = ""
-    _name: Name = Name("", "")
+    _name: Name
     _title: str = ""
     _sex: str = ""
     _reference_no: str = ""
@@ -15,14 +15,17 @@ class Individual:
     _family_started_id: str = ""
     _occupation: str = ""
     _note: str = ""
-    _events: [Events] = []
+    _events: [Events]
 
-    _event: Events = Events("unassigned", "", "")
+    _event: Events
 
     _file_line_no: int
 
     def __init__(self, file_line_no: int):
         self._file_line_no = file_line_no
+        self._name = Name("", "")
+        self._events = []
+        self._event = Events("unassigned", "", "")
         self._createIndividual()
 
     def _checkNextAttribute(self):

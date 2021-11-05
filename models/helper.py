@@ -1,4 +1,4 @@
-file_name = './public/files/oneguy.ged'
+file_name = './public/files/DavidOla.ged'
 
 
 def getFileLineData(line_no: int, with_file_lines: bool = False):

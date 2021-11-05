@@ -6,12 +6,14 @@ from models.helper import getFileLineData
 
 
 class Parser:
-    _individuals: [IndividualStruct] = []
-    _families: [FamilyStruct] = []
+    _individuals: {str: IndividualStruct}
+    _families: {str: FamilyStruct}
     _file_line_no: int
 
     def __init__(self, file_line_no: int):
         self._file_line_no = file_line_no
+        self._families = {}
+        self._individuals = {}
         self._parseFile()
 
     def _parseFile(self):
@@ -22,18 +24,20 @@ class Parser:
             if self._file_line_no < len(file_lines):
                 file_line = file_lines[self._file_line_no]
             else:
+                print(self._individuals, '\n')
+                print(self._families, '\n')
                 break
 
         if "INDI" in file_line:
-            individual = Individual(self._file_line_no)
-            self._individuals.append(individual.getIndividual())
-            self._file_line_no = individual.getPresentFileLineNo()
-            print(individual.getIndividual(), '\n')
+            individualObject = Individual(self._file_line_no)
+            individual = individualObject.getIndividual()
+            self._individuals[individual.id] = individual
+            self._file_line_no = individualObject.getPresentFileLineNo()
             self._parseFile()
 
         if "@ FAM" in file_line:
-            family = Family(self._file_line_no)
-            self._families.append(family.getFamily())
-            self._file_line_no = family.getPresentFileLineNo()
-            print(family.getFamily(), '\n')
+            familyObject = Family(self._file_line_no)
+            family = familyObject.getFamily()
+            self._families[family.id] = family
+            self._file_line_no = familyObject.getPresentFileLineNo()
             self._parseFile()
