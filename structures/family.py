@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Individual import Individual
+from models.event import Events
 from enum import Enum
 
 
@@ -12,8 +12,11 @@ class Role(Enum):
 
 @dataclass
 class Family:
-    Individual: Individual
-    role: Role
+    id: str
+    husband_id: str
+    wife_id: str
+    events: [Events]
+    _children: [str]
 
 
 

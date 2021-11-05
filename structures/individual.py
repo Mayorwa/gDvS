@@ -1,4 +1,4 @@
-from Event import Events
+from models.event import Events
 from dataclasses import dataclass
 from enum import Enum
 

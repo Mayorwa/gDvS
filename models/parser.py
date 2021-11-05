@@ -1,11 +1,13 @@
-from Individual import Individual
-from Structures.Individual import Individual as IndividualStruct
-from Family import Family
-from helper import getFileLineData
+from models.individual import Individual
+from models.family import Family
+from structures.individual import Individual as IndividualStruct
+from structures.family import Family as FamilyStruct
+from models.helper import getFileLineData
 
 
 class Parser:
     _individuals: [IndividualStruct] = []
+    _families: [FamilyStruct] = []
     _file_line_no: int
 
     def __init__(self, file_line_no: int):
@@ -30,5 +32,8 @@ class Parser:
             self._parseFile()
 
         if "@ FAM" in file_line:
-            # print(self._individuals)
-            print("hyyyy\n")
+            family = Family(self._file_line_no)
+            self._families.append(family.getFamily())
+            self._file_line_no = family.getPresentFileLineNo()
+            print(family.getFamily(), '\n')
+            self._parseFile()

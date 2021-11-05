@@ -1,6 +1,6 @@
-from Event import Events
-from Structures.Individual import Individual as IndividualStruct, Name
-from helper import getFileLineData, getIdFromLineData, getNameFromLineData, getSexFromLineData, \
+from models.event import Events
+from structures.individual import Individual as IndividualStruct, Name
+from models.helper import getFileLineData, getIdFromLineData, getNameFromLineData, getSexFromLineData, \
     getEventPropertyFromLineData, getTitleFromLineData, getOccupationFromLineData, getReferenceNoFromLineData, \
     getNoteFromLineData, getFamilyIdFromLineData
 
@@ -61,6 +61,24 @@ class Individual:
         if "1 DEAT" in line_data:
             checkIfEventIsSet()
             self._event.event = "death"
+            self._file_line_no += 1
+            self._checkNextAttribute()
+
+        if "1 BAPM" in line_data:
+            checkIfEventIsSet()
+            self._event.event = "baptism"
+            self._file_line_no += 1
+            self._checkNextAttribute()
+
+        if "1 ADOP" in line_data:
+            checkIfEventIsSet()
+            self._event.event = "adoption"
+            self._file_line_no += 1
+            self._checkNextAttribute()
+
+        if "1 CREM" in line_data:
+            checkIfEventIsSet()
+            self._event.event = "cremation"
             self._file_line_no += 1
             self._checkNextAttribute()
 

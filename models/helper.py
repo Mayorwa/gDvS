@@ -1,4 +1,4 @@
-file_name = 'files/DavidOla.ged'
+file_name = './public/files/oneguy.ged'
 
 
 def getFileLineData(line_no: int, with_file_lines: bool = False):
@@ -145,6 +145,48 @@ def getEventPropertyFromLineData(line_data: str, property_type: str = 'date'):
     else:
         match_value = '2 PLAC '
 
+    for i in line_data:
+        if match == match_value:
+            if i != '\n':
+                value += i
+        else:
+            match += i
+
+    return value
+
+
+def getHusbandFromLineData(line_data: str):
+    match = ''
+    value = ''
+    match_value = '1 HUSB '
+    for i in line_data:
+        if match == match_value:
+            if i != '\n':
+                value += i
+        else:
+            match += i
+
+    return value
+
+
+def getChildFromLineData(line_data: str):
+    match = ''
+    value = ''
+    match_value = '1 CHIL '
+    for i in line_data:
+        if match == match_value:
+            if i != '\n':
+                value += i
+        else:
+            match += i
+
+    return value
+
+
+def getWifeFromLineData(line_data: str):
+    match = ''
+    value = ''
+    match_value = '1 WIFE '
     for i in line_data:
         if match == match_value:
             if i != '\n':

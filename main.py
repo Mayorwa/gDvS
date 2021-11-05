@@ -1,4 +1,4 @@
-from Parser import Parser
+from models.parser import Parser
 if __name__ == '__main__':
     Parser(0)
 
