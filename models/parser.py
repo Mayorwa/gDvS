@@ -24,8 +24,6 @@ class Parser:
             if self._file_line_no < len(file_lines):
                 file_line = file_lines[self._file_line_no]
             else:
-                print(self._individuals, '\n')
-                print(self._families, '\n')
                 break
 
         if "INDI" in file_line:
@@ -41,3 +39,6 @@ class Parser:
             self._families[family.id] = family
             self._file_line_no = familyObject.getPresentFileLineNo()
             self._parseFile()
+
+    def getIndividualAndFamilies(self):
+        return self._individuals, self._families
