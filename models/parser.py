@@ -42,3 +42,12 @@ class Parser:
 
     def getIndividualAndFamilies(self):
         return self._individuals, self._families
+
+    def getFamilyById(self, index: str, populate: bool):
+        family = self._families[index]
+        family_copy = family
+        if populate:
+            family_copy.husband = self._individuals[family_copy.husband_id]
+            family_copy.wife = self._individuals[family_copy.wife_id]
+
+        return family_copy
